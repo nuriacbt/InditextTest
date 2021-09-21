@@ -8,7 +8,8 @@ Ejemplo de llamada al endpoint:
 	Parámetros de la request: 
 		- brandId (PATH PARAM): id de la cadena (en el caso del ejemplo 1).
 		- productId (PATH PARAM): id del producto de la cadena (en el caso del ejemplo 35455).
-		- aplicationDate (REQUEST_PARAM): fecha y hora en las que se tiene que aplicar la tarifa en cuestion. 
+		- aplicationDate (REQUEST_PARAM): fecha y hora en las que se tiene que aplicar la 
+			tarifa en cuestion. 
 	
 	Ejemplo de response: 
 	{
