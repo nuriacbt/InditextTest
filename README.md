@@ -4,10 +4,12 @@ una de las cadenas del grupo inditex, en una fecha determinada.
 
 Ejemplo de llamada al endpoint: 
 	GET: /api/v1/brands/1/products/35455/prices?aplicationDate=2020-06-14T18:30:01.000-00:00
+	
 	Parámetros de la request: 
 		- brandId (PATH PARAM): id de la cadena (en el caso del ejemplo 1).
 		- productId (PATH PARAM): id del producto de la cadena (en el caso del ejemplo 35455).
 		- aplicationDate (REQUEST_PARAM): fecha y hora en las que se tiene que aplicar la tarifa en cuestion. 
+	
 	Ejemplo de response: 
 	{
 		"brandId": 1,
