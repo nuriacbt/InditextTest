@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.inditex.brands.domain.exception.IncorrectBrandIdException;
+import es.inditex.brands.domain.exception.IncorrectProductIdException;
+import es.inditex.brands.domain.exception.PriceNotFoundException;
+import es.inditex.brands.domain.model.Price;
 import es.inditex.brands.domain.ports.primary.IPriceService;
 import es.inditex.brands.infrastructure.inbound.api.dto.PriceDTO;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectBrandIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectProductIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.PriceNotFoundException;
+import es.inditex.brands.infrastructure.inbound.api.mapper.IPriceMapper;
 import lombok.AllArgsConstructor;
 
 /**
@@ -30,6 +32,9 @@ public class PriceController {
 	
 	@Autowired
 	IPriceService priceService;
+	
+	@Autowired
+	IPriceMapper priceMapper;
 	
 	/**
 	 * Método controlador del servicio getPrice() que busca el precio y la tarifa
@@ -47,10 +52,10 @@ public class PriceController {
 	public ResponseEntity<PriceDTO> getPrice(
 			@PathVariable("brandId") Integer brandId, 
 			@PathVariable("productId") Integer productId,
-			@RequestParam("aplicationDate")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime aplicationDate
-			) throws IncorrectBrandIdException, IncorrectProductIdException, PriceNotFoundException {
+			@RequestParam("aplicationDate")  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime aplicationDate) {
 		
-		PriceDTO priceDto = this.priceService.getPrice(brandId, productId, aplicationDate);
+		Price price = priceService.getPrice(brandId, productId, aplicationDate);
+		PriceDTO priceDto = priceMapper.priceToPriceDto(price, price.getBrand().getBrandId(), price.getProduct().getProductId());
 		return new ResponseEntity<>(priceDto, HttpStatus.OK);
 	}
 	

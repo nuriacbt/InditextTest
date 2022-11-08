@@ -13,12 +13,12 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import es.inditex.brands.domain.exception.IncorrectBrandIdException;
+import es.inditex.brands.domain.exception.IncorrectProductIdException;
+import es.inditex.brands.domain.exception.PriceNotFoundException;
 import es.inditex.brands.domain.ports.primary.IBrandService;
 import es.inditex.brands.domain.ports.primary.IProductService;
-import es.inditex.brands.domain.ports.secundary.IReadPriceRepository;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectBrandIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectProductIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.PriceNotFoundException;
+import es.inditex.brands.domain.ports.secundary.IReadPricePersistence;
 
 /**
  * @author Núria Curto
@@ -35,7 +35,7 @@ public class PriceServiceTest {
 	IProductService productService;
 	
 	@Mock
-	IReadPriceRepository priceRepository;
+	IReadPricePersistence pricePersistence;
 	
 	@InjectMocks
 	PriceServiceImpl priceService;
@@ -44,7 +44,7 @@ public class PriceServiceTest {
 	public void getPriceErrorTest() throws IncorrectBrandIdException, IncorrectProductIdException, PriceNotFoundException {	
 		doNothing().when(brandService).validateBrandId(1);
 		doNothing().when(productService).validateProductId(1);
-		when(priceRepository.findPricesByFilters(1, 1, LocalDateTime.now())).thenReturn(null);	
+		when(pricePersistence.findPricesByFilters(1, 1, LocalDateTime.now())).thenReturn(null);	
 		assertThrows(PriceNotFoundException.class, () -> {
 			priceService.getPrice(1, 1, LocalDateTime.now());
 	    });

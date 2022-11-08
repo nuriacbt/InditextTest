@@ -1,6 +1,6 @@
 package es.inditex.brands.domain.ports.primary;
 
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectProductIdException;
+import es.inditex.brands.domain.exception.IncorrectProductIdException;
 
 /**
  * @author Núria Curto

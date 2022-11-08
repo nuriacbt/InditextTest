@@ -12,9 +12,9 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import es.inditex.brands.domain.exception.IncorrectProductIdException;
 import es.inditex.brands.domain.model.Product;
-import es.inditex.brands.domain.ports.secundary.IReadProductRepository;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectProductIdException;
+import es.inditex.brands.domain.ports.secundary.IReadProductPersistence;
 
 /**
  * @author Núria Curto
@@ -25,7 +25,7 @@ import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectProductId
 public class ProductServiceTest {
 	
 	@Mock
-	IReadProductRepository productRepository;
+	IReadProductPersistence productPersistence;
 	
 	@InjectMocks
 	ProductServiceImpl productService;
@@ -33,7 +33,7 @@ public class ProductServiceTest {
 	@Test
 	public void validateIncorrectProductId() {
 		Optional<Product> optional = Optional.empty();
-		when(productRepository.findById(55)).thenReturn(optional);
+		when(productPersistence.findById(55)).thenReturn(optional);
 		assertThrows(IncorrectProductIdException.class, () -> {
 			productService.validateProductId(55);
 	    });

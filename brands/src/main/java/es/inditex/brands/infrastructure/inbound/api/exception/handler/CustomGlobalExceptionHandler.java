@@ -1,4 +1,4 @@
-package es.inditex.brands.infrastructure.inbound.api.exception;
+package es.inditex.brands.infrastructure.inbound.api.exception.handler;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import es.inditex.brands.domain.exception.IncorrectBrandIdException;
+import es.inditex.brands.domain.exception.IncorrectProductIdException;
+import es.inditex.brands.domain.exception.PriceNotFoundException;
 import es.inditex.brands.infrastructure.inbound.api.dto.ErrorDTO;
 
 /**

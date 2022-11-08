@@ -12,9 +12,9 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import es.inditex.brands.domain.exception.IncorrectBrandIdException;
 import es.inditex.brands.domain.model.Brand;
-import es.inditex.brands.domain.ports.secundary.IReadBrandRepository;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectBrandIdException;
+import es.inditex.brands.domain.ports.secundary.IReadBrandPersistence;
 
 /**
  * @author Núria Curto
@@ -25,7 +25,7 @@ import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectBrandIdEx
 public class BrandServiceTest {
 	
 	@Mock
-	IReadBrandRepository brandRepository;
+	IReadBrandPersistence brandPersistence;
 	
 	@InjectMocks
 	BrandServiceImpl brandService;
@@ -33,7 +33,7 @@ public class BrandServiceTest {
 	@Test
 	public void validateIncorrectBrandId() {
 		Optional<Brand> optional = Optional.empty();
-		when(brandRepository.findById(55)).thenReturn(optional);
+		when(brandPersistence.findById(55)).thenReturn(optional);
 		assertThrows(IncorrectBrandIdException.class, () -> {
 			brandService.validateBrandId(55);
 	    });

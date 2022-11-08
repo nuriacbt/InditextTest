@@ -2,10 +2,10 @@ package es.inditex.brands.domain.ports.primary;
 
 import java.time.LocalDateTime;
 
-import es.inditex.brands.infrastructure.inbound.api.dto.PriceDTO;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectBrandIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectProductIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.PriceNotFoundException;
+import es.inditex.brands.domain.exception.IncorrectBrandIdException;
+import es.inditex.brands.domain.exception.IncorrectProductIdException;
+import es.inditex.brands.domain.exception.PriceNotFoundException;
+import es.inditex.brands.domain.model.Price;
 
 
 /**
@@ -25,6 +25,6 @@ public interface IPriceService {
 	 * @throws IncorrectProductIdException
 	 * @throws PriceNotFoundException
 	 */
-	PriceDTO getPrice(Integer brandId, Integer productId, LocalDateTime aplicationDate) throws IncorrectBrandIdException, IncorrectProductIdException, PriceNotFoundException;
+	Price getPrice(Integer brandId, Integer productId, LocalDateTime aplicationDate) throws PriceNotFoundException;
 
 }

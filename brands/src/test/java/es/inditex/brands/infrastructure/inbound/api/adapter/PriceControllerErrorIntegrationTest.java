@@ -23,11 +23,11 @@ import org.springframework.web.method.annotation.ExceptionHandlerMethodResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod;
 
+import es.inditex.brands.domain.exception.IncorrectBrandIdException;
+import es.inditex.brands.domain.exception.IncorrectProductIdException;
+import es.inditex.brands.domain.exception.PriceNotFoundException;
 import es.inditex.brands.domain.ports.primary.IPriceService;
-import es.inditex.brands.infrastructure.inbound.api.exception.CustomGlobalExceptionHandler;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectBrandIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.IncorrectProductIdException;
-import es.inditex.brands.infrastructure.inbound.api.exception.PriceNotFoundException;
+import es.inditex.brands.infrastructure.inbound.api.exception.handler.CustomGlobalExceptionHandler;
 
 /**
  * @author Núria Curto

@@ -1,4 +1,4 @@
-package es.inditex.brands.infrastructure.inbound.api.exception;
+package es.inditex.brands.domain.exception;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Núria Curto
  *
  */
-public class IncorrectBrandIdException extends Exception implements Serializable {
+public class IncorrectBrandIdException extends RuntimeException implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
