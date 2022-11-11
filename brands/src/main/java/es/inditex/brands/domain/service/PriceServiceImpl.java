@@ -16,28 +16,26 @@ import es.inditex.brands.domain.ports.primary.IBrandService;
 import es.inditex.brands.domain.ports.primary.IPriceService;
 import es.inditex.brands.domain.ports.primary.IProductService;
 import es.inditex.brands.domain.ports.secundary.IReadPricePersistence;
+import lombok.AllArgsConstructor;
 
 /**
  * @author Núria Curto
  *
  */
 @Service
+@AllArgsConstructor
 public class PriceServiceImpl implements IPriceService{
-
+	
+	@Autowired
 	private final IBrandService brandService;
-
+	
+	@Autowired
 	private final IProductService productService;
-
+	
+	@Autowired
 	private final IReadPricePersistence pricePersistence;
 	
-	public PriceServiceImpl(IBrandService brandService, IProductService productService,
-			IReadPricePersistence pricePersistence) {
-		this.brandService = brandService;
-		this.productService = productService;
-		this.pricePersistence = pricePersistence;
-	}
-
-
+	
 	private static final String PRICE_NOT_FOUND_MSG = "No se ha el precio final para el producto con Id %s, en la fecha indicada";
 	
 	/**

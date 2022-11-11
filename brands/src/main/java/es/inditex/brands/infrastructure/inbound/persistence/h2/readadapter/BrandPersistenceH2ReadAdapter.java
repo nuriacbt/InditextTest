@@ -9,18 +9,17 @@ import es.inditex.brands.domain.model.Brand;
 import es.inditex.brands.domain.ports.secundary.IReadBrandPersistence;
 import es.inditex.brands.infrastructure.inbound.persistence.h2.repository.IReadBrandRepository;
 import es.inditex.brands.infrastructure.inbound.persistence.mapper.IBrandEntityMapper;
+import lombok.AllArgsConstructor;
 
 @Transactional
+@AllArgsConstructor
 public class BrandPersistenceH2ReadAdapter implements IReadBrandPersistence{
-
-	private IReadBrandRepository brandRepository;
-
-	private IBrandEntityMapper brandMapper;
 	
-	public BrandPersistenceH2ReadAdapter(IReadBrandRepository brandRepository, IBrandEntityMapper brandMapper) {
-		this.brandRepository = brandRepository;
-		this.brandMapper = brandMapper;
-	}
+	@Autowired
+	private IReadBrandRepository brandRepository;
+	
+	@Autowired
+	private IBrandEntityMapper brandMapper;
 
 	@Override
 	public Optional<Brand> findById(Integer id) {

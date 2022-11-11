@@ -11,19 +11,18 @@ import es.inditex.brands.domain.model.Price;
 import es.inditex.brands.domain.ports.secundary.IReadPricePersistence;
 import es.inditex.brands.infrastructure.inbound.persistence.h2.repository.IReadPriceRepository;
 import es.inditex.brands.infrastructure.inbound.persistence.mapper.IPriceEntityMapper;
+import lombok.AllArgsConstructor;
 
 @Transactional
+@AllArgsConstructor
 public class PricePersistenceH2ReadAdapter implements IReadPricePersistence{
-
+	
+	@Autowired
 	private IReadPriceRepository priceRepository;
-
+	
+	@Autowired
 	private IPriceEntityMapper priceMapper;
-			
-	public PricePersistenceH2ReadAdapter(IReadPriceRepository priceRepository, IPriceEntityMapper priceMapper) {
-		this.priceRepository = priceRepository;
-		this.priceMapper = priceMapper;
-	}
-
+	
 	@Override
 	public Optional<Price> findById(Integer id) {
 		return Optional.of(priceMapper.priceEntityToPrice(priceRepository.getById(id)));
@@ -33,5 +32,4 @@ public class PricePersistenceH2ReadAdapter implements IReadPricePersistence{
 	public List<Price> findPricesByFilters(Integer brandId, Integer productId, LocalDateTime aplicationDate) {
 		return priceMapper.priceEntityToPriceList(priceRepository.findPricesByFilters(brandId, productId, aplicationDate));
 	}
-
 }

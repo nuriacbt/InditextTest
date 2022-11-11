@@ -45,11 +45,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
 		<dependency>
 		    <groupId>org.mapstruct</groupId>
 		    <artifactId>mapstruct</artifactId>
 		    <version>1.4.2.Final</version>
+		</dependency>
+		<!-- SWAGGER -->
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-ui</artifactId>
+		    <version>1.6.4</version>
 		</dependency>
 	</dependencies>
 	<build>
